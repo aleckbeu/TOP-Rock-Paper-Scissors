@@ -29,7 +29,7 @@ const MESSAGES = [
 ]
 
 startButton.addEventListener('click', function() {
-    if (currentRound = 1) {
+    if (currentRound === 1) {
         startGame();
     } else {
         // From bootstrap
@@ -44,7 +44,7 @@ function checkRound(totalRounds, currentRound) {
         return true;
 
     } else {
-        console.log(totalRounds, currentRound);
+        console.log('NEGATIVE CHECK, Total Rounds: ' + totalRounds + 'Current Round:' + currentRound);
         return false;
 
     }
