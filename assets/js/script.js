@@ -29,17 +29,13 @@ const MESSAGES = [
 ]
 
 startButton.addEventListener('click', function() {
-
-    if (currentRound < 1) {
-
+    if (currentRound = 1) {
         startGame();
     } else {
         // From bootstrap
         // Prevents interactions with a pointer 
         squirtle.classList.add('pe-none');
     }
-
-
 });
 
 function checkRound(totalRounds, currentRound) {
