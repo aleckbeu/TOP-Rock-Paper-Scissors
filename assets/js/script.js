@@ -42,21 +42,24 @@ function checkRound(totalRounds, currentRound) {
     if (currentRound === totalRounds) {
         console.log('Total Rounds: ' + totalRounds + 'Current Round:' + currentRound);
         return true;
-
     } else {
         console.log('NEGATIVE CHECK, Total Rounds: ' + totalRounds + 'Current Round:' + currentRound);
         return false;
-
     }
 }
 
 
 //disable once game has started
 
+
+// PE NONE NO FUNCIONA BIEN
+
 function startGame() {
     board.classList.toggle('visually-hidden');
     message.innerText = MESSAGES[0];
     numberOftotalRounds.innerText = 0;
+
+
 
 
     squirtle.addEventListener('click', function() {
@@ -145,89 +148,83 @@ function checkBattle(computerSelection, playerSelection) {
     if (computerSelection === playerSelection) {
         message.innerText = "Empate";
         console.log('EMPATE');
-        totalRounds = totalRounds + 1;
         console.log('Add +1 to Total Rounds');
-
-
+        updateBoard(playerScoreTotal, computerScoreTotal);
     }
 
     if (computerSelection === 'charmander' && playerSelection === 'squirtle') {
         message.innerText = "You´ve win! Water beats Fire!";
         console.log("You´ve win! Water beats Fire!");
-        playerScoreTotal++;
-        playerScore.innerHTML = playerScoreTotal;
-        totalRounds = totalRounds + 1;
         console.log('Add +1 to Total Rounds');
-
-
-
-
+        playerScoreTotal++;
+        updateBoard(playerScoreTotal, computerScoreTotal);
     }
 
     if (computerSelection === 'charmander' && playerSelection === 'bulbasaur') {
         message.innerText = "You´ve lost! Fire beats Grass!";
         console.log("You´ve lost! Fire beats Grass!");
-        computerScoreTotal++;
-        computerScore.innerHTML = computerScoreTotal;
-        totalRounds = totalRounds + 1;
         console.log('Add +1 to Total Rounds');
-
-
-
-
+        computerScoreTotal++;
+        updateBoard(playerScoreTotal, computerScoreTotal);
     }
     if (computerSelection === 'squirtle' && playerSelection === 'charmander') {
         message.innerText = "You´ve win! Water beats Fire!";
         console.log("You´ve win! Water beats Fire!");
-        playerScoreTotal++;
-        playerScore.innerHTML = playerScoreTotal;
-        totalRounds = totalRounds + 1;
         console.log('Add +1 to Total Rounds');
-
-
-
-
+        playerScoreTotal++;
+        updateBoard(playerScoreTotal, computerScoreTotal);
     }
 
     if (computerSelection === 'squirtle' && playerSelection === 'bulbasaur') {
         message.innerText = "You´ve lost! Grass beats Water!";
         console.log("You´ve lost! Grass beats Water!");
-        computerScoreTotal++;
-        computerScore.innerHTML = computerScoreTotal;
-        totalRounds = totalRounds + 1;
         console.log('Add +1 to Total Rounds');
-
-
-
-
+        computerScoreTotal++;
+        updateBoard(playerScoreTotal, computerScoreTotal);
     }
+
     if (computerSelection === 'bulbasaur' && playerSelection === 'charmander') {
         message.innerText = "You´ve win! Fire beats Grass!";
         console.log("You´ve win! Fire beats Grass!");
-        playerScoreTotal++;
-        playerScore.innerHTML = playerScoreTotal;
-        totalRounds = totalRounds + 1;
         console.log('Add +1 to Total Rounds');
-
-
-
+        playerScoreTotal++;
+        updateBoard(playerScoreTotal, computerScoreTotal);
     }
 
     if (computerSelection === 'bulbasaur' && playerSelection === 'squirtle') {
         message.innerText = "You´ve win! Grass beats Water!";
         console.log("You´ve win! Grass beats Water!");
+        console.log('Add +1 to Total Rounds');
         computerScoreTotal++;
+        updateBoard(playerScoreTotal, computerScoreTotal);
+    }
+
+    function updateBoard(playerScoreTotal, computerScoreTotal) {
+        playerScore.innerHTML = playerScoreTotal;
         computerScore.innerHTML = computerScoreTotal;
         totalRounds = totalRounds + 1;
-        console.log('Add +1 to Total Rounds');
 
+        if (totalRounds > 5) {
+            setTimeout(chooseWinner, 3000, computerScoreTotal, playerScoreTotal);
+        } else {
 
+            setTimeout(resetChooses, 3000, computerSelection, playerSelection);
+        }
 
     }
 
-    setTimeout(resetChooses, 3000, computerSelection, playerSelection);
 }
 
+
+function chooseWinner(computerScoreTotal, playerScoreTotal) {
+    if (computerScoreTotal === playerScoreTotal) {
+        message.innerText = "There is no winner! Click on the Pókeball to play again.";
+    } else if (computerScoreTotal > playerScoreTotal) {
+        message.innerText = "The computer has won and you´ve lost. Click on the Pókeball to play again.";
+    } else {
+        message.innerText = "You have won the computer! Click on the Pókeball to play again.";
+    }
+}
 
 
 
@@ -245,9 +242,10 @@ function resetChooses(computerSelection, playerSelection) {
     let bar = document.getElementById(computerSelection);
     bar.classList.remove('border', 'border-5', 'border-secondary');
 
-    playerSelection = '';
-    computerSelection = '';
     console.log('Total Rounds: ' + totalRounds + 'Current Round:' + currentRound);
     console.log('RESET computerSelection & playerSelection');
+
+    playerSelection = '';
+    computerSelection = '';
 
 }
