@@ -11,14 +11,14 @@ let message = document.getElementById('message')
 let playerSelection;
 let computerSelection;
 
-let playerScoreTotal;
-let computerScoreTotal;
+let playerScoreTotal = 0;
+let computerScoreTotal = 0;
 
-let totalRounds = 0;
-let currentRound = 0;
+// We need totalRounds & currentRound in order to prevent the user to click on
+// any other Pókemon while the currentRound is going on.
+let totalRounds = 1;
+let currentRound = 1;
 
-console.log(computerScore.innerText);
-console.log(playerScore.innerText);
 
 const MESSAGES = [
     'Let´s the game begin! Choose your Pókemon, the computer will choose randomly.',
@@ -29,7 +29,17 @@ const MESSAGES = [
 ]
 
 startButton.addEventListener('click', function() {
-    startGame();
+
+    if (currentRound < 1) {
+
+        startGame();
+    } else {
+        // From bootstrap
+        // Prevents interactions with a pointer 
+        squirtle.classList.add('pe-none');
+    }
+
+
 });
 
 function checkRound(totalRounds, currentRound) {
@@ -44,10 +54,13 @@ function checkRound(totalRounds, currentRound) {
     }
 }
 
+
+//disable once game has started
+
 function startGame() {
     board.classList.toggle('visually-hidden');
     message.innerText = MESSAGES[0];
-
+    numberOftotalRounds.innerText = 0;
 
 
     squirtle.addEventListener('click', function() {
@@ -145,8 +158,8 @@ function checkBattle(computerSelection, playerSelection) {
     if (computerSelection === 'charmander' && playerSelection === 'squirtle') {
         message.innerText = "You´ve win! Water beats Fire!";
         console.log("You´ve win! Water beats Fire!");
-        playerScoreTotal = playerScoreTotal + 1;
-        playerScore.innerText = playerScoreTotal;
+        playerScoreTotal++;
+        playerScore.innerHTML = playerScoreTotal;
         totalRounds = totalRounds + 1;
         console.log('Add +1 to Total Rounds');
 
@@ -158,8 +171,8 @@ function checkBattle(computerSelection, playerSelection) {
     if (computerSelection === 'charmander' && playerSelection === 'bulbasaur') {
         message.innerText = "You´ve lost! Fire beats Grass!";
         console.log("You´ve lost! Fire beats Grass!");
-        computerScoreTotal = computerScoreTotal + 1;
-        computerScore.innerText = computerScoreTotal;
+        computerScoreTotal++;
+        computerScore.innerHTML = computerScoreTotal;
         totalRounds = totalRounds + 1;
         console.log('Add +1 to Total Rounds');
 
@@ -170,8 +183,8 @@ function checkBattle(computerSelection, playerSelection) {
     if (computerSelection === 'squirtle' && playerSelection === 'charmander') {
         message.innerText = "You´ve win! Water beats Fire!";
         console.log("You´ve win! Water beats Fire!");
-        playerScoreTotal = playerScoreTotal + 1;
-        playerScore.innerText = playerScoreTotal;
+        playerScoreTotal++;
+        playerScore.innerHTML = playerScoreTotal;
         totalRounds = totalRounds + 1;
         console.log('Add +1 to Total Rounds');
 
@@ -183,8 +196,8 @@ function checkBattle(computerSelection, playerSelection) {
     if (computerSelection === 'squirtle' && playerSelection === 'bulbasaur') {
         message.innerText = "You´ve lost! Grass beats Water!";
         console.log("You´ve lost! Grass beats Water!");
-        computerScoreTotal = computerScoreTotal + 1;
-        computerScore.innerText = computerScoreTotal;
+        computerScoreTotal++;
+        computerScore.innerHTML = computerScoreTotal;
         totalRounds = totalRounds + 1;
         console.log('Add +1 to Total Rounds');
 
@@ -195,8 +208,8 @@ function checkBattle(computerSelection, playerSelection) {
     if (computerSelection === 'bulbasaur' && playerSelection === 'charmander') {
         message.innerText = "You´ve win! Fire beats Grass!";
         console.log("You´ve win! Fire beats Grass!");
-        playerScoreTotal = playerScoreTotal + 1;
-        playerScore.innerText = playerScoreTotal;
+        playerScoreTotal++;
+        playerScore.innerHTML = playerScoreTotal;
         totalRounds = totalRounds + 1;
         console.log('Add +1 to Total Rounds');
 
@@ -205,10 +218,10 @@ function checkBattle(computerSelection, playerSelection) {
     }
 
     if (computerSelection === 'bulbasaur' && playerSelection === 'squirtle') {
-        message.innerText = "You´ve lost! Water beats Grass!";
-        console.log("You´ve lost! Water beats Grass!");
-        computerScoreTotal = computerScoreTotal + 1;
-        computerScore.innerText = computerScoreTotal;
+        message.innerText = "You´ve win! Grass beats Water!";
+        console.log("You´ve win! Grass beats Water!");
+        computerScoreTotal++;
+        computerScore.innerHTML = computerScoreTotal;
         totalRounds = totalRounds + 1;
         console.log('Add +1 to Total Rounds');
 
@@ -226,7 +239,9 @@ function checkBattle(computerSelection, playerSelection) {
 // TRABAJAR EN HACER MÁXIMO 5 RONDAS
 
 function resetChooses(computerSelection, playerSelection) {
-    message.innerText = MESSAGES[totalRounds];
+    message.innerText = MESSAGES[totalRounds - 1];
+    numberOftotalRounds.innerText = totalRounds;
+
 
     let foo = document.getElementById(playerSelection);
     foo.classList.remove('border', 'border-5', 'border-primary');
@@ -237,5 +252,6 @@ function resetChooses(computerSelection, playerSelection) {
     playerSelection = '';
     computerSelection = '';
     console.log('Total Rounds: ' + totalRounds + 'Current Round:' + currentRound);
-    console.log('RESET');
+    console.log('RESET computerSelection & playerSelection');
+
 }
