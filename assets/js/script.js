@@ -61,6 +61,7 @@ function startGame() {
             playerSelection = 'squirtle';
             playHuman(playerSelection);
         } else {
+            //from bootstrap
             squirtle.classList.add('pe-none');
         }
 
