@@ -17,7 +17,6 @@ let computerScoreTotal = 0;
 // We need totalRounds & currentRound in order to prevent the user to click on
 // any other Pókemon while the currentRound is going on.
 
-let currentRound = 1;
 let totalRounds = 1;
 
 let gameIsStarted = false;
@@ -200,9 +199,6 @@ function chooseWinner(computerScoreTotal, playerScoreTotal) {
 
 
 
-
-// TRABAJAR EN HACER MÁXIMO 5 RONDAS
-
 function resetChooses(computerSelection, playerSelection) {
     message.innerText = MESSAGES[totalRounds - 1];
     numberOftotalRounds.innerText = totalRounds;
@@ -214,8 +210,7 @@ function resetChooses(computerSelection, playerSelection) {
     let bar = document.getElementById(computerSelection);
     bar.classList.remove('border', 'border-5', 'border-secondary');
 
-    console.log('Total Rounds: ' + totalRounds + 'Current Round:' + currentRound);
-    console.log('RESET computerSelection & playerSelection');
+    console.log('RESET computerSelection & playerSelection & roundIsBeingPlayed');
 
     playerSelection = '';
     computerSelection = '';
