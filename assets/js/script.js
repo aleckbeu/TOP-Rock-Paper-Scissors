@@ -16,9 +16,11 @@ let computerScoreTotal = 0;
 
 // We need totalRounds & currentRound in order to prevent the user to click on
 // any other Pókemon while the currentRound is going on.
-let totalRounds = 1;
-let currentRound = 1;
 
+let currentRound = 1;
+let totalRounds = 1;
+
+let gameIsStarted = false;
 
 const MESSAGES = [
     'Let´s the game begin! Choose your Pókemon, the computer will choose randomly.',
@@ -29,87 +31,57 @@ const MESSAGES = [
 ]
 
 startButton.addEventListener('click', function() {
-    if (currentRound === 1) {
+    if (gameIsStarted === false) {
+        board.classList.toggle('visually-hidden');
         startGame();
     } else {
-        // From bootstrap
-        // Prevents interactions with a pointer 
-        squirtle.classList.add('pe-none');
+        alert('Finish your current game first!');
     }
 });
 
-function checkRound(totalRounds, currentRound) {
-    if (currentRound === totalRounds) {
-        console.log('Total Rounds: ' + totalRounds + 'Current Round:' + currentRound);
-        return true;
-    } else {
-        console.log('NEGATIVE CHECK, Total Rounds: ' + totalRounds + 'Current Round:' + currentRound);
-        return false;
-    }
-}
 
-
-//disable once game has started
-
-
-// PE NONE NO FUNCIONA BIEN
 
 function startGame() {
-    board.classList.toggle('visually-hidden');
     message.innerText = MESSAGES[0];
     numberOftotalRounds.innerText = 0;
 
-
-
+    gameIsStarted = true;
 
     squirtle.addEventListener('click', function() {
+        currentRound++;
+        console.log('Add +1 to Current Round');
+        numberOftotalRounds.innerText = totalRounds;
+        console.log('Total Rounds: ' + totalRounds + 'Current Round:' + currentRound);
 
-        if (checkRound(totalRounds, currentRound) === true) {
-            currentRound++;
-            console.log('Add +1 to Current Round');
-            numberOftotalRounds.innerText = totalRounds;
-            console.log('Total Rounds: ' + totalRounds + 'Current Round:' + currentRound);
-
-            playerSelection = 'squirtle';
-            playHuman(playerSelection);
-        } else {
-            //from bootstrap
-            squirtle.classList.add('pe-none');
-        }
+        playerSelection = 'squirtle';
+        playHuman(playerSelection);
 
     });
 
     bulbasaur.addEventListener('click', function() {
+        currentRound++;
+        console.log('Add +1 to Current Round');
+        numberOftotalRounds.innerText = totalRounds;
+        console.log('Total Rounds: ' + totalRounds + 'Current Round:' + currentRound);
 
-        if (checkRound(totalRounds, currentRound) === true) {
-            currentRound++;
-            console.log('Add +1 to Current Round');
-            numberOftotalRounds.innerText = totalRounds;
-            console.log('Total Rounds: ' + totalRounds + 'Current Round:' + currentRound);
+        playerSelection = 'bulbasaur';
+        playHuman(playerSelection);
 
-            playerSelection = 'bulbasaur';
-            playHuman(playerSelection);
-        } else {
-            bulbasaur.classList.add('pe-none');
-        }
     });
 
     charmander.addEventListener('click', function() {
+        currentRound++;
+        console.log('Add +1 to Current Round');
+        numberOftotalRounds.innerText = totalRounds;
+        console.log('Total Rounds: ' + totalRounds + 'Current Round:' + currentRound);
 
-        if (checkRound(totalRounds, currentRound) === true) {
-            currentRound++;
-            console.log('Add +1 to Current Round');
-            numberOftotalRounds.innerText = totalRounds;
-            console.log('Total Rounds: ' + totalRounds + 'Current Round:' + currentRound);
+        playerSelection = 'charmander';
+        playHuman(playerSelection);
 
-            playerSelection = 'charmander';
-            playHuman(playerSelection);
-        } else {
-            charmander.classList.add('pe-none');
-        }
     });
-
 }
+
+
 
 function playComputer(playerSelection) {
 
