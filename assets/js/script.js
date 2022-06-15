@@ -22,6 +22,8 @@ let totalRounds = 1;
 
 let gameIsStarted = false;
 
+let roundIsBeingPlayed = false;
+
 const MESSAGES = [
     'Let´s the game begin! Choose your Pókemon, the computer will choose randomly.',
     'Second Round!',
@@ -33,9 +35,9 @@ const MESSAGES = [
 startButton.addEventListener('click', function() {
     if (gameIsStarted === false) {
         board.classList.toggle('visually-hidden');
+
         startGame();
-    } else {
-        alert('Finish your current game first!');
+
     }
 });
 
@@ -44,44 +46,52 @@ startButton.addEventListener('click', function() {
 function startGame() {
     message.innerText = MESSAGES[0];
     numberOftotalRounds.innerText = 0;
-
     gameIsStarted = true;
+    console.log(roundIsBeingPlayed);
 
-    squirtle.addEventListener('click', function() {
-        currentRound++;
-        console.log('Add +1 to Current Round');
-        numberOftotalRounds.innerText = totalRounds;
-        console.log('Total Rounds: ' + totalRounds + 'Current Round:' + currentRound);
-
-        playerSelection = 'squirtle';
-        playHuman(playerSelection);
-
-    });
-
-    bulbasaur.addEventListener('click', function() {
-        currentRound++;
-        console.log('Add +1 to Current Round');
-        numberOftotalRounds.innerText = totalRounds;
-        console.log('Total Rounds: ' + totalRounds + 'Current Round:' + currentRound);
-
-        playerSelection = 'bulbasaur';
-        playHuman(playerSelection);
-
-    });
-
-    charmander.addEventListener('click', function() {
-        currentRound++;
-        console.log('Add +1 to Current Round');
-        numberOftotalRounds.innerText = totalRounds;
-        console.log('Total Rounds: ' + totalRounds + 'Current Round:' + currentRound);
-
-        playerSelection = 'charmander';
-        playHuman(playerSelection);
-
-    });
 }
 
+function playRound(playerSelection) {
+    roundIsBeingPlayed = true;
+    numberOftotalRounds.innerText = totalRounds;
+    console.log(roundIsBeingPlayed);
+    playHuman(playerSelection);
 
+}
+
+squirtle.addEventListener('click', function() {
+    if (roundIsBeingPlayed === false) {
+        playerSelection = 'squirtle';
+        playRound(playerSelection);
+    }
+});
+bulbasaur.addEventListener('click', function() {
+    if (roundIsBeingPlayed === false) {
+        playerSelection = 'bulbasaur';
+        playRound(playerSelection);
+
+    }
+});
+charmander.addEventListener('click', function() {
+    if (roundIsBeingPlayed === false) {
+        playerSelection = 'charmander';
+        playRound(playerSelection);
+
+    }
+});
+
+
+function playHuman(playerSelection) {
+
+    console.log('Human Selection: ' + playerSelection);
+    let element = document.getElementById(playerSelection);
+    element.classList.add('border', 'border-5', 'border-primary');
+
+    message.innerText = "You´ve chosen " + playerSelection;
+
+    setTimeout(playComputer, 3000, playerSelection);
+
+}
 
 function playComputer(playerSelection) {
 
@@ -104,17 +114,7 @@ function playComputer(playerSelection) {
 
 }
 
-function playHuman(playerSelection) {
 
-    console.log('Human Selection: ' + playerSelection);
-    let element = document.getElementById(playerSelection);
-    element.classList.add('border', 'border-5', 'border-primary');
-
-    message.innerText = "You´ve chosen " + playerSelection;
-
-    setTimeout(playComputer, 3000, playerSelection);
-
-}
 
 function checkBattle(computerSelection, playerSelection) {
     if (computerSelection === playerSelection) {
@@ -219,5 +219,6 @@ function resetChooses(computerSelection, playerSelection) {
 
     playerSelection = '';
     computerSelection = '';
+    roundIsBeingPlayed = false;
 
 }
