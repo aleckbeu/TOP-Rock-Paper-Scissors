@@ -14,13 +14,9 @@ let computerSelection;
 let playerScoreTotal = 0;
 let computerScoreTotal = 0;
 
-// We need totalRounds & currentRound in order to prevent the user to click on
-// any other Pókemon while the currentRound is going on.
-
 let totalRounds = 1;
 
 let gameIsStarted = false;
-
 let roundIsBeingPlayed = false;
 
 const MESSAGES = [
@@ -46,16 +42,12 @@ function startGame() {
     message.innerText = MESSAGES[0];
     numberOftotalRounds.innerText = 0;
     gameIsStarted = true;
-    console.log(roundIsBeingPlayed);
-
 }
 
 function playRound(playerSelection) {
     roundIsBeingPlayed = true;
     numberOftotalRounds.innerText = totalRounds;
-    console.log(roundIsBeingPlayed);
     playHuman(playerSelection);
-
 }
 
 squirtle.addEventListener('click', function() {
@@ -64,6 +56,7 @@ squirtle.addEventListener('click', function() {
         playRound(playerSelection);
     }
 });
+
 bulbasaur.addEventListener('click', function() {
     if (roundIsBeingPlayed === false) {
         playerSelection = 'bulbasaur';
@@ -71,6 +64,7 @@ bulbasaur.addEventListener('click', function() {
 
     }
 });
+
 charmander.addEventListener('click', function() {
     if (roundIsBeingPlayed === false) {
         playerSelection = 'charmander';
@@ -81,15 +75,11 @@ charmander.addEventListener('click', function() {
 
 
 function playHuman(playerSelection) {
-
     console.log('Human Selection: ' + playerSelection);
     let element = document.getElementById(playerSelection);
     element.classList.add('border', 'border-5', 'border-primary');
-
     message.innerText = "You´ve chosen " + playerSelection;
-
     setTimeout(playComputer, 3000, playerSelection);
-
 }
 
 function playComputer(playerSelection) {
@@ -98,7 +88,9 @@ function playComputer(playerSelection) {
 
     let randomPokemon = Math.floor(Math.random() * listOfPokemons.length);
     let computerSelection = parseInt(randomPokemon);
+
     computerSelection = listOfPokemons[computerSelection];
+
     console.log('Computer selection: ' +
         computerSelection);
 
@@ -109,8 +101,6 @@ function playComputer(playerSelection) {
 
 
     setTimeout(checkBattle, 3000, computerSelection, playerSelection);
-
-
 }
 
 
@@ -195,6 +185,7 @@ function chooseWinner(computerScoreTotal, playerScoreTotal) {
     } else {
         message.innerText = "You have won the computer! Click on the Pókeball to play again.";
     }
+    gameIsStarted = false;
 }
 
 
