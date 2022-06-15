@@ -1,12 +1,15 @@
 let startButton = document.getElementById('startButton');
 let computerScore = document.getElementById('computerScore')
 let playerScore = document.getElementById('playerScore')
-let numberOftotalRounds = document.getElementById('numberOfRounds')
+let numberOfTotalRounds = document.getElementById('numberOfRounds')
 let charmander = document.getElementById('charmander')
 let squirtle = document.getElementById('squirtle')
 let bulbasaur = document.getElementById('bulbasaur')
 let board = document.getElementById('board')
 let message = document.getElementById('message')
+
+
+
 
 let playerSelection;
 let computerSelection;
@@ -29,7 +32,9 @@ const MESSAGES = [
 
 startButton.addEventListener('click', function() {
     if (gameIsStarted === false) {
-        board.classList.toggle('visually-hidden');
+        if (board.classList.contains('hidden')) {
+            board.classList.remove('hidden');
+        }
 
         startGame();
 
@@ -40,13 +45,18 @@ startButton.addEventListener('click', function() {
 
 function startGame() {
     message.innerText = MESSAGES[0];
-    numberOftotalRounds.innerText = 0;
+    numberOfTotalRounds.innerText = 0;
+    startButton.nextElementSibling.classList.add('undisplay');
+
+    startButton.nextElementSibling.nextElementSibling.classList.remove('hidden');
+
+
     gameIsStarted = true;
 }
 
 function playRound(playerSelection) {
     roundIsBeingPlayed = true;
-    numberOftotalRounds.innerText = totalRounds;
+    numberOfTotalRounds.innerText = totalRounds;
     playHuman(playerSelection);
 }
 
@@ -77,9 +87,9 @@ charmander.addEventListener('click', function() {
 function playHuman(playerSelection) {
     console.log('Human Selection: ' + playerSelection);
     let element = document.getElementById(playerSelection);
-    element.classList.add('border', 'border-5', 'border-primary');
+    element.classList.add('playerSelection');
     message.innerText = "You´ve chosen " + playerSelection;
-    setTimeout(playComputer, 3000, playerSelection);
+    setTimeout(playComputer, 1000, playerSelection);
 }
 
 function playComputer(playerSelection) {
@@ -95,20 +105,20 @@ function playComputer(playerSelection) {
         computerSelection);
 
     let element = document.getElementById(computerSelection);
-    element.classList.add('border', 'border-5', 'border-secondary');
+    element.classList.add('computerSelection');
 
     message.innerText = "The computer has chosen " + computerSelection;
 
 
-    setTimeout(checkBattle, 3000, computerSelection, playerSelection);
+    setTimeout(checkBattle, 1000, computerSelection, playerSelection);
 }
 
 
 
 function checkBattle(computerSelection, playerSelection) {
     if (computerSelection === playerSelection) {
-        message.innerText = "Empate";
-        console.log('EMPATE');
+        message.innerText = "Draw!";
+        console.log('Draw!');
         console.log('Add +1 to Total Rounds');
         updateBoard(playerScoreTotal, computerScoreTotal);
     }
@@ -166,10 +176,10 @@ function checkBattle(computerSelection, playerSelection) {
         totalRounds = totalRounds + 1;
 
         if (totalRounds > 5) {
-            setTimeout(chooseWinner, 3000, computerScoreTotal, playerScoreTotal);
+            setTimeout(chooseWinner, 1000, computerScoreTotal, playerScoreTotal, computerSelection);
         } else {
 
-            setTimeout(resetChooses, 3000, computerSelection, playerSelection);
+            setTimeout(resetChooses, 1000, computerSelection, playerSelection);
         }
 
     }
@@ -177,29 +187,47 @@ function checkBattle(computerSelection, playerSelection) {
 }
 
 
-function chooseWinner(computerScoreTotal, playerScoreTotal) {
+function chooseWinner(computerScoreTotal, playerScoreTotal, computerSelection) {
+
     if (computerScoreTotal === playerScoreTotal) {
-        message.innerText = "There is no winner! Click on the Pókeball to play again.";
+        message.innerText = "There is no winner! Click on the Start button to play again.";
     } else if (computerScoreTotal > playerScoreTotal) {
-        message.innerText = "The computer has won and you´ve lost. Click on the Pókeball to play again.";
+        message.innerText = "The computer has won and you´ve lost. Click on the Start button to play again.";
     } else {
-        message.innerText = "You have won the computer! Click on the Pókeball to play again.";
+        message.innerText = "You have won the computer! Click on the Start button to play again.";
     }
+
+    document.getElementById(playerSelection).classList.remove('playerSelection');
+    document.getElementById(computerSelection).classList.remove('computerSelection');
+
+
+
+    playerSelection = '';
+    computerSelection = '';
+
+    totalRounds = 1;
+    numberOfTotalRounds.innerText = 0;
+    computerScore.innerText = 0;
+    playerScore.innerText = 0;
+
+    roundIsBeingPlayed = false;
     gameIsStarted = false;
+
+
 }
 
 
 
 function resetChooses(computerSelection, playerSelection) {
     message.innerText = MESSAGES[totalRounds - 1];
-    numberOftotalRounds.innerText = totalRounds;
+    numberOfTotalRounds.innerText = totalRounds;
 
 
     let foo = document.getElementById(playerSelection);
-    foo.classList.remove('border', 'border-5', 'border-primary');
+    foo.classList.remove('playerSelection');
 
     let bar = document.getElementById(computerSelection);
-    bar.classList.remove('border', 'border-5', 'border-secondary');
+    bar.classList.remove('computerSelection');
 
     console.log('RESET computerSelection & playerSelection & roundIsBeingPlayed');
 

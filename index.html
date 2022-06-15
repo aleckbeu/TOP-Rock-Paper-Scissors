@@ -5,50 +5,82 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TOP: Fire, Water, Grass Pokémons</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>TOP: Fire, Grass & Water Pókemons</title>
+    <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <h1>Choose Your Initial</h1>
-            <h4>A Rock, Paper, Scissors based game.</h4>
-            <p>Click on the Pókeball below to get started.</p>
-            <p>Best of 5 rounds wins!</p>
+    <div class="header">
+        <div class="nav">
+            <h1 class="nav__title">TOP: Fire, Grass & Water Pókemons</h1>
+            <ul class="nav__menu">
+                <li class="nav__menu-item"><a href="#home">Home</a></li>
+                <li class="nav__menu-item"><a href="#play">Play</a></li>
+            </ul>
         </div>
-
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <img src="https://images.wikidexcdn.net/mwuploads/wikidex/e/e3/latest/20210504000531/100_Pok%C3%A9_Balls_GO.png" class="img-fluid img-thumbnail" id="startButton">
-            </div>
+    <div id="home" class="home">
+        <div class="home__image"><img src="https://www.serebii.net/itemdex/sprites/pgl/pokeball.png" alt=""></div>
+        <div class="home__text">
+            <p><b>TOP: Fire, Grass & Water Pókemons</b> is a game I have created for The Odin Project. Originally, this should be a Rock Paper Scirssors game, however I wanted to give it a fresh look.</p>
+            <p>The rules are very easy, although you might not agree with them:</p>
+            <ul>
+                <li>
+                    <green>Grass</green> beats
+                    <blue>Water</blue>
+                </li>
+                <li>
+                    <red>Fire</red> beats
+                    <green>Grass</green>
+                </li>
+                <li>
+                    <blue>Water</blue> beats
+                    <red>Fire</red>
+                </li>
+            </ul>
         </div>
-        <div id="board" class="visually-hidden">
-            <div class="row">
-                <div class="col">Computer: <span id="computerScore">0</span></div>
-                <div class="col">Player: <span id="playerScore">0</span></div>
-                <div class="col">Rounds: <span id="numberOfRounds">0</span>/5</div>
+    </div>
+    <div class="board" id="play">
+        <div class="board__button-container">
+            <span class='start-btn' id="startButton">START</span> <span>Click to start fighting!</span> <span class="hidden"><span id="numberOfRounds">0</span>/5</span>
+        </div>
+        <div id="board" class="hidden">
+            <div class="messages">
+                <div class="start-btn message-width" id="message">Hola</div>
             </div>
-            <div class="row">
-                <div class="col"><img src="https://img.pokemondb.net/sprites/bank/normal/charmander.png " class="img-fluid " alt=" " id="charmander"> Charmander (Fire)</div>
-                <div class="col"><img src="https://img.pokemondb.net/sprites/bank/normal/squirtle.png " class="img-fluid " alt=" " id="squirtle"> Squirtle (Water)</div>
-                <div class="col"><img src="https://img.pokemondb.net/sprites/bank/normal/bulbasaur.png " class="img-fluid " alt="Bulbasaur (Grass) " id="bulbasaur"> Bulbasaur (Grass)</div>
+            <div class="board__score-board">
+                <span class="score-board__title">Player</span>
+                <span>X</span>
+                <span class="score-board__title">Computer</span>
             </div>
-
-            <div class="row">
-                <div class="alert alert-primary " role="alert" id="message">
-                    A simple primary alert—check it out!
+            <div class="board__score-board">
+                <span class="score-board__title" id="playerScore">0</span>
+                <span>X</span>
+                <span class="score-board__title" id="computerScore">0</span>
+            </div>
+            <div class="board__pokemon-container">
+                <div class="board__pokemon-container--item">
+                    <div class="pokemon-container__image"><img src="https://www.pkparaiso.com/imagenes/espada_escudo/sprites/animados-gigante/charmander.gif" alt="Charmander" class="responsive" id="charmander"></div>
+                    <div class="pokemon-container__name">Charmander (Fire)</div>
+                </div>
+                <div class="board__pokemon-container--item">
+                    <div class="pokemon-container__image"><img src="https://www.pkparaiso.com/imagenes/espada_escudo/sprites/animados-gigante/squirtle.gif" alt="Squirtle" class="responsive" id="squirtle"></div>
+                    <div class="pokemon-container__name">Squirtle (Water)</div>
+                </div>
+                <div class="board__pokemon-container--item">
+                    <div class="pokemon-container__image"><img src="https://www.pkparaiso.com/imagenes/espada_escudo/sprites/animados-gigante/bulbasaur.gif" alt="Bulbasaur" class="responsive" id="bulbasaur"></div>
+                    <div class="pokemon-container__name">Bulbasaur (Grass)</div>
                 </div>
             </div>
-
         </div>
     </div>
 
+    <div class="footer">
+        <p>All the Pókemon related images and names are property of their owner. </p>
+        <p>Go to <a href="https://aleckbeu.com" target="_blank">aleck<b>beu</b>.com</a> to know a bit more about me.</p>
+    </div>
 
-    <script src="assets/js/script.js "></script>
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>
