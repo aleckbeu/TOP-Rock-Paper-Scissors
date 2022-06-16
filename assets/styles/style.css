@@ -1,174 +1,182 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Press+Start+2P&display=swap');
-.responsive {
-    width: 50%;
-    height: auto;
-}
-
-body {
-    background-color: #0F4261;
-    margin: 0;
-    font-family: 'Open Sans', sans-serif;
-    color: rgb(190, 212, 255);
-}
-
-.header {
-    display: flex;
-}
-
-.nav {
-    font-family: 'Oswald', sans-serif;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    background-color: #0B3047;
-    color: white;
-}
-
-.nav__menu-item {
-    display: inline;
-}
-
-.nav__menu-item a {
-    color: white;
-    text-decoration: none;
-    font-size: x-large;
-}
-
-.home {
-    display: flex;
-    width: 50%;
-    margin: 0 auto;
-}
-
-.home__text {
-    color: black;
-}
-
-green {
-    color: green;
-    font-weight: bold;
-}
-
-blue {
-    color: blue;
-    font-weight: bold;
-}
-
-red {
-    color: red;
-    font-weight: bold;
-}
-
-
-/* https://codepen.io/DanielWeiner/pen/naybVd */
-
-.start-btn {
-    font-family: 'Press Start 2P', cursive;
-    text-align: center;
-    display: inline-block;
-    margin: 5px;
-    font-weight: bold;
-    padding: 10px 0 10px 10px;
-    background-color: lightgray;
-    text-shadow: -1px -1px black, 1px 1px white;
-    color: gray;
-    -webkit-border-radius: 7px;
-    -moz-border-radius: 7px;
-    -o-border-radius: 7px;
-    border-radius: 7px;
-    box-shadow: 0 .2em gray;
-    cursor: pointer;
-}
-
-.messages {
-    width: 100%;
-    font-size: 12px;
-    display: flex;
-    margin: 10px;
-}
-
-.message-width {
-    width: 80%;
-    margin: 0 auto;
-    font-family: 'Open Sans', sans-serif;
-    text-shadow: none;
-    color: #0B3047;
-    background-color: rgb(190, 212, 255);
-    box-shadow: 0 .2em #0B3047;
-}
-
-.board {
-    width: 50%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.board__score-board {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.score-board__title {
-    font-size: 1.5em;
-}
-
-.board__pokemon-container {
-    display: flex;
-    margin-top: 20px;
-}
-
-.pokemon-container__image {
-    text-align: center;
-}
-
-.board__pokemon-container--item {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.pokemon-container__name {
-    text-align: center;
-}
-
-.playerSelection {
-    filter: brightness(120%);
-    filter: contrast(120%);
-    filter: drop-shadow(0px 0px 3px gold);
-}
-
-.computerSelection {
-    filter: brightness(120%);
-    filter: contrast(120%);
-    filter: drop-shadow(0px 0px 3px silver);
-}
-
-.footer {
-    width: 80%;
-    margin: 0 auto;
-    text-align: center;
-    font-size: 0.8em;
-    margin-top: 30px;
-}
-
-.footer p {
-    margin: 0;
-}
-
-.footer a {
-    color: white;
-    text-decoration: none;
-}
-
-.hidden {
-    visibility: hidden;
-}
-
-.undisplay {
-    display: none;
-}
+    @import url('https://fonts.googleapis.com/css2?family=Oswald&family=Press+Start+2P&display=swap');
+    .responsive {
+        width: 50%;
+        height: auto;
+    }
+    
+    body {
+        background-color: #0F4261;
+        margin: 0;
+        font-family: 'Open Sans', sans-serif;
+        color: rgb(190, 212, 255);
+    }
+    
+    .header {
+        display: flex;
+    }
+    
+    .nav {
+        font-family: 'Oswald', sans-serif;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        background-color: #0B3047;
+        color: white;
+    }
+    
+    .nav__menu-item {
+        display: inline;
+    }
+    
+    .nav__menu-item a {
+        color: white;
+        text-decoration: none;
+        font-size: x-large;
+    }
+    
+    .home {
+        display: flex;
+        width: 50%;
+        margin: 0 auto;
+    }
+    
+    @media (min-width:480px) {
+        /* smartphones, Android phones, landscape iPhone */
+        .home {
+            width: 80%;
+        }
+        .board {
+            width: 80%;
+        }
+    }
+    
+    .home__text {
+        color: black;
+    }
+    
+    green {
+        color: green;
+        font-weight: bold;
+    }
+    
+    blue {
+        color: blue;
+        font-weight: bold;
+    }
+    
+    red {
+        color: red;
+        font-weight: bold;
+    }
+    /* https://codepen.io/DanielWeiner/pen/naybVd */
+    
+    .start-btn {
+        font-family: 'Press Start 2P', cursive;
+        text-align: center;
+        display: inline-block;
+        margin: 5px;
+        font-weight: bold;
+        padding: 10px 0 10px 10px;
+        background-color: lightgray;
+        text-shadow: -1px -1px black, 1px 1px white;
+        color: gray;
+        -webkit-border-radius: 7px;
+        -moz-border-radius: 7px;
+        -o-border-radius: 7px;
+        border-radius: 7px;
+        box-shadow: 0 .2em gray;
+        cursor: pointer;
+    }
+    
+    .messages {
+        width: 100%;
+        font-size: 12px;
+        display: flex;
+        margin: 10px;
+    }
+    
+    .message-width {
+        width: 80%;
+        margin: 0 auto;
+        font-family: 'Open Sans', sans-serif;
+        text-shadow: none;
+        color: #0B3047;
+        background-color: rgb(190, 212, 255);
+        box-shadow: 0 .2em #0B3047;
+    }
+    
+    .board {
+        width: 50%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .board__score-board {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .score-board__title {
+        font-size: 1.5em;
+    }
+    
+    .board__pokemon-container {
+        display: flex;
+        margin-top: 20px;
+    }
+    
+    .pokemon-container__image {
+        text-align: center;
+    }
+    
+    .board__pokemon-container--item {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .pokemon-container__name {
+        text-align: center;
+    }
+    
+    .playerSelection {
+        filter: brightness(120%);
+        filter: contrast(120%);
+        filter: drop-shadow(0px 0px 3px gold);
+    }
+    
+    .computerSelection {
+        filter: brightness(120%);
+        filter: contrast(120%);
+        filter: drop-shadow(0px 0px 3px silver);
+    }
+    
+    .footer {
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 0.8em;
+        margin-top: 30px;
+    }
+    
+    .footer p {
+        margin: 0;
+    }
+    
+    .footer a {
+        color: white;
+        text-decoration: none;
+    }
+    
+    .hidden {
+        visibility: hidden;
+    }
+    
+    .undisplay {
+        display: none;
+    }
