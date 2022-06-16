@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald&family=Press+Start+2P&display=swap');
 .responsive {
-    width: 100%;
+    width: 50%;
     height: auto;
 }
 
@@ -120,6 +120,10 @@ red {
 .board__pokemon-container {
     display: flex;
     margin-top: 20px;
+}
+
+.pokemon-container__image {
+    text-align: center;
 }
 
 .board__pokemon-container--item {
