@@ -29,6 +29,10 @@
         display: inline;
     }
     
+    .nav__menu-item:nth-of-type() {
+        margin-left: 10px;
+    }
+    
     .nav__menu-item a {
         color: white;
         text-decoration: none;
@@ -41,7 +45,7 @@
         margin: 0 auto;
     }
     
-    @media (min-width:480px) {
+    @media (max-width:480px) {
         /* smartphones, Android phones, landscape iPhone */
         .home {
             width: 80%;
