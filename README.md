@@ -1,6 +1,6 @@
 # TOP - Rock, Paper, Scirssors
 
-This is a solution to the [Project: Rock Paper Scirssors]([https://www.frontendmentor.io/challenges/order-summary-component-QlPmajDUj](https://www.theodinproject.com/lessons/foundations-rock-paper-scissors)).
+This is a solution to the [Project: Rock Paper Scirssors](https://www.theodinproject.com/lessons/foundations-rock-paper-scissors).
 
 ![Screenshot](https://aleckbeu.github.io/TOP-Rock-Paper-Scissors/assets/images/screenshot.png)
 
